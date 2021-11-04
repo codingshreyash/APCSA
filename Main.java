@@ -1,191 +1,51 @@
-/* 
-Constuctor Triangle -
-Assigns the given size and default character to a new Triangle
-@param size - identifies the size of the triangle 
-*/
+import java.util.Scanner;
+//package Main;
+public class Main {
+  public static void main(String[] args) {
+    BankAccount b1 = new BankAccount("Todd Bauer", 5000);
+    BankAccount b2 = new BankAccount("Ryan Kolb", 10000);
+    BankAccount b3 = new BankAccount("Pete Nicholson");
 
-public class Triangle {
-  private int size;
-  private char ch;
+    System.out.println(b1.getName() + "'s Bank Account has " + b1.getBalance());
+    System.out.println(b2.getName() + "'s Bank Account has " + b2.getBalance());
+    System.out.println(b3.getName() + "'s Bank Account has " + b3.getBalance() + "\n");
 
-/*
-Method setSize - 
-Assigns a given value to a size if it is between 1 and 50, otherwise assigns 10 
-@param size - identifies the desired size
-*/
+    b1.deposit(500);
+    b2.deposit(250);
+    b3.deposit(1000);
 
-  public void setSize(int size) {
-    if (size >= 1 && size <= 50)
-      this.size = size;
-    else
-      this.size = 10;
-  }
+    System.out.println(b1.getName() + "'s Bank Account has " + b1.getBalance());
+    System.out.println(b2.getName() + "'s Bank Account has " + b2.getBalance());
+    System.out.println(b3.getName() + "'s Bank Account has " + b3.getBalance() + "\n");
 
-/*
-Method setChar - 
-Assigns a given value to a char which is * 
-@param ch - identifies the desired symbol for the triangle 
-*/
+    b1.withdraw(6000);
+    b2.withdraw(5000);
+    b3.withdraw(999.99);
 
-  public void setChar(char ch) {
-    if (ch == ' ')
-      this.ch = '*';
-    else
-      this.ch = ch;
-  }
+    System.out.println(b1.getName() + "'s Bank Account has " + b1.getBalance());
+    System.out.println(b2.getName() + "'s Bank Account has " + b2.getBalance());
+    System.out.println(b3.getName() + "'s Bank Account has " + b3.getBalance() + "\n");
 
-  public Triangle() { 
-    size = 10;
-    ch = '*';
-  }
+    BankAccount b4 = new BankAccount();
+    BankAccount b5 = new BankAccount();
+    BankAccount b6 = new BankAccount();
 
-  public Triangle(int s, char c) { 
-    size = s;
-    ch = c;
-  }
+    b4.deposit();
+    b5.deposit();
+    b6.deposit();
 
-  public Triangle(int s) { // Constructor 3
-    size = s;
-    ch = '*';
-  }
+    b4.withdraw();
+    b5.withdraw();
+    b6.withdraw();
 
-  public Triangle(char c) { // Constructor 4
-    size = 10;
-    ch = c;
-  }
+    System.out.println("\n" + b4.toString());
+    System.out.println(b5.toString());
+    System.out.println(b6.toString());
 
-  // DISPLAYS
-  public void displaySolidUL() { // This displays a solid triangle in the Upper Left
-    int c = 0;
-    String tri = "";
-    for (int r = 1; r <= size; r++) {
-      for (c = r; c <= size; c++) {
-        tri += ch;
-      }
-      tri += "\n";
-    }
-    System.out.println("Solid Upper Left \n" + tri);
-  }
+    CheckingAccount c1 = new CheckingAccount();
 
-  public void displaySolidUR() { // This displays a solid triangle in the Upper Right
-    int c = 0;
-    String tri = "";
-    for (int r = 0; r <= size; r++) {
-      for (c = 1; c <= size; c++) {
-        if (c <= r)
-          tri += " ";
-        else
-          tri += ch;
-      }
-      tri += "\n";
-    }
-    System.out.println("Solid Upper Right \n" + tri);
-  }
+    c1.deposit();
 
-  public void displaySolidLL() { // This displays a solid triangle in the Lower Left
-    int c = 0;
-    String tri = "";
-    for (int r = 0; r <= size; r++) {
-      for (c = 1; c <= size; c++) {
-        if (c <= r)
-          tri += ch;
-        else
-          tri += " ";
-      }
-      tri += "\n";
-    }
-    System.out.println("Solid Lower Left \n" + tri);
-  }
-
-  public void displaySolidLR() { // This displays a solid triangle in the Upper Right
-    int c = 0;
-    String tri = "";
-    for (int r = 0; r <= size; r++) {
-      for (c = 1; c <= size; c++) {
-        if (c <= size - r)
-          tri += " ";
-        else
-          tri += ch;
-      }
-      tri += "\n";
-    }
-    System.out.println("Solid Lower Right \n" + tri);
-  }
-
-  public void displayHollowLR() { // This displays a Triangle in the Lower Right that is Hollow
-    int c = 0;
-    String tri = "";
-    for (int r = 0; r <= size; r++) {
-      for (c = 1; c <= size; c++) {
-        if (r == size) {
-          tri += ch;
-        } else if (c < size - r) {
-          tri += " ";
-        } else if (c == size - r || c == size) {
-          tri += ch;
-        } else {
-          tri += " ";
-        }
-      }
-      tri += "\n";
-    }
-    System.out.println("Hollow Lower Right \n" + tri);
-  }
-
-  //
-  public void displayHollowLL() { // This displays a Triangle in the Lower Left that is Hollow
-    int c = 0;
-    String tri = "";
-    for (int r = 0; r <= size; r++) {
-      for (c = 1; c <= size; c++) {
-        if (c == size) {
-          tri += ch;
-        } else if (r < size - c) {
-        } else if (r == size - c || r == size) {
-          tri += ch;
-        } else {
-          tri += " ";
-        }
-      }
-      tri += "\n";
-    }
-    System.out.println("Hollow Lower Left \n" + tri);
-  }
-
-  public void displayHollowUL() { // This displays a Triangle in the Upper Left that is Hollow
-    int c = 0;
-    String tri = "";
-    for (int r = 1; r <= size; r++) {
-      for (c = 1; c <= size; c++) {
-        if (r == 1) {
-          tri += ch;
-        } else if (c == 1 || c == size - r + 1) {
-          tri += ch;
-        } else {
-          tri += " ";
-        }
-
-      }
-      tri += "\n";
-    }
-    System.out.println("Hollow Upper Left \n" + tri);
-  }
-
-  public void displayHollowUR() { // This dispalys a hollow upper right
-    int c = 0;
-    String tri = "";
-    for (int r = 1; r <= size; r++) {
-      for (c = 1; c <= size; c++) {
-        if (r == 1) {
-          tri += ch;
-        } else if (c == size || c == r) {
-          tri += ch;
-        } else {
-          tri += " ";
-        }
-      }
-      tri += "\n";
-    }
-    System.out.println("Hollow Upper Right \n" + tri);
+    System.out.println(c1.serviceCharge());
   }
 }
